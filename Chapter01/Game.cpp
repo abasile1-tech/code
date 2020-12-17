@@ -298,31 +298,16 @@ void Game::GenerateOutput()
 	};
 	SDL_RenderFillRect(mRenderer, &paddle2);
 
-	SDL_Rect ball_one{
-		static_cast<int>(mBallVector[0].ball_position.x - thickness / 2),
-		static_cast<int>(mBallVector[0].ball_position.y - thickness / 2),
-		thickness,
-		thickness
-	};
-	SDL_RenderFillRect(mRenderer, &ball_one); 
+	for (size_t i = 0; i < mBallVector.size(); i++) {
+		SDL_Rect ball_obj{
+				static_cast<int>(mBallVector[i].ball_position.x - thickness / 2),
+				static_cast<int>(mBallVector[i].ball_position.y - thickness / 2),
+				thickness,
+				thickness
+		};
+		SDL_RenderFillRect(mRenderer, &ball_obj);
+	}
 
-	SDL_Rect ball_two{
-		static_cast<int>(mBallVector[1].ball_position.x - thickness / 2),
-		static_cast<int>(mBallVector[1].ball_position.y - thickness / 2),
-		thickness,
-		thickness
-	};
-	SDL_RenderFillRect(mRenderer, &ball_two);
-
-	SDL_Rect ball_three{
-		static_cast<int>(mBallVector[2].ball_position.x - thickness / 2),
-		static_cast<int>(mBallVector[2].ball_position.y - thickness / 2),
-		thickness,
-		thickness
-	};
-	SDL_RenderFillRect(mRenderer, &ball_three);
-
-	
 	// Swap front buffer and back buffer
 	SDL_RenderPresent(mRenderer);
 }
