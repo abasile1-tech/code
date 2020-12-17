@@ -8,6 +8,7 @@
 
 #pragma once
 #include "SDL/SDL.h"
+#include <vector>
 
 // Vector2 struct just stores x/y coordinates
 // (for now)
@@ -15,6 +16,13 @@ struct Vector2
 {
 	float x;
 	float y;
+};
+
+// Ball struct that contains two Vector2s: one for the position and one for the velocity
+struct Ball
+{
+	Vector2 ball_position;
+	Vector2 ball_velocity;
 };
 
 // Game class
@@ -56,4 +64,9 @@ private:
 	Vector2 mBallPos;
 	// Velocity of ball
 	Vector2 mBallVel;
+
+	//multiple ball support
+	Ball ball1;
+	Ball ball2;
+	std::vector<Ball> mBallVector;
 };
