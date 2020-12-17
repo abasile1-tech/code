@@ -68,5 +68,6 @@ private:
 	//multiple ball support
 	Ball ball1;
 	Ball ball2;
+	Ball ball3;
 	std::vector<Ball> mBallVector;
 };
