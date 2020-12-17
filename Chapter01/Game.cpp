@@ -61,7 +61,7 @@ bool Game::Initialize()
 		return false;
 	}
 
-	// initialize the positions and velocities of several balls
+	// initialize the positions and velocities of ball(s)
 	ball1.ball_position.x = 20;
 	ball1.ball_position.y = 20;
 	ball1.ball_velocity.x = 222;
@@ -192,7 +192,7 @@ void Game::UpdateGame()
 		}
 	}
 
-	// support for multiple balls
+	// support for ball(s)
 	float diff = 0.0;
 	for (size_t i = 0; i < mBallVector.size(); i++) {
 		mBallVector[i].ball_position.x += mBallVector[i].ball_velocity.x * deltaTime;
@@ -208,7 +208,7 @@ void Game::UpdateGame()
 			diff <= paddleH / 2.0f &&
 			// We are in the correct x-position
 			mBallVector[i].ball_position.x <= 25.0f && mBallVector[i].ball_position.x >= 20.0f &&
-			// The ball is moving to the left
+			// The ball(s) is moving to the left
 			mBallVector[i].ball_velocity.x < 0.0f)
 		{
 			mBallVector[i].ball_velocity.x *= -1.0f;
@@ -223,25 +223,25 @@ void Game::UpdateGame()
 			diff <= paddleH / 2.0f &&
 			// We are in the correct x-position
 			mBallVector[i].ball_position.x <= 1024.0f - 20.0f && mBallVector[i].ball_position.x >= 1024.0f - 25.0f &&
-			// The ball is moving to the right
+			// The ball(s) is moving to the right
 			mBallVector[i].ball_velocity.x > 0.0f)
 		{
 			mBallVector[i].ball_velocity.x *= -1.0f;
 		}
 
-		// Did the ball go off the screen? (if so, end game)
+		// Did the ball(s) go off the screen? (if so, end game)
 		else if (mBallVector[i].ball_position.x <= 0.0f || mBallVector[i].ball_position.x >= 1024.0f)
 		{
 			mIsRunning = false;
 		}
 
-		// Did the ball collide with the top wall?
+		// Did the ball(s) collide with the top wall?
 		if (mBallVector[i].ball_position.y <= thickness && mBallVector[i].ball_velocity.y < 0.0f)
 		{
 			mBallVector[i].ball_velocity.y *= -1;
 		}
 
-		// Did the ball collide with the bottom wall?
+		// Did the ball(s) collide with the bottom wall?
 		else if (mBallVector[i].ball_position.y >= (768 - thickness) &&
 			mBallVector[i].ball_velocity.y > 0.0f)
 		{
@@ -298,6 +298,7 @@ void Game::GenerateOutput()
 	};
 	SDL_RenderFillRect(mRenderer, &paddle2);
 
+	// Draw Ball(s)
 	for (size_t i = 0; i < mBallVector.size(); i++) {
 		SDL_Rect ball_obj{
 				static_cast<int>(mBallVector[i].ball_position.x - thickness / 2),
