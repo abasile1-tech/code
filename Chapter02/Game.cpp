@@ -240,6 +240,7 @@ void Game::Shutdown()
 	SDL_Quit();
 }
 
+// takes in Actor pointers
 void Game::AddActor(Actor* actor)
 {
 	// If we're updating actors, need to add to pending
@@ -253,6 +254,7 @@ void Game::AddActor(Actor* actor)
 	}
 }
 
+// takes in Actor pointers
 void Game::RemoveActor(Actor* actor)
 {
 	// Is it in pending actors?
@@ -274,6 +276,8 @@ void Game::RemoveActor(Actor* actor)
 	}
 }
 
+// the SpriteComponent adds itself to a vector of sprite components.
+// ensure that mSprites stays sorted by draw order
 void Game::AddSprite(SpriteComponent* sprite)
 {
 	// Find the insertion point in the sorted vector

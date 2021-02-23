@@ -12,6 +12,9 @@ class Component
 public:
 	// Constructor
 	// (the lower the update order, the earlier the component updates)
+	// the Component class has a pointer to the owning actor
+	// this is so that the component can access the transform data and any other information
+	// it deems necessary
 	Component(class Actor* owner, int updateOrder = 100);
 	// Destructor
 	virtual ~Component();

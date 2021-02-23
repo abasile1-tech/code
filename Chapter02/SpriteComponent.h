@@ -12,6 +12,8 @@
 class SpriteComponent : public Component
 {
 public:
+	// the game implements the painter's algorithm by drawing
+	// sprite components in the order specified by the mDrawOrder member variable
 	// (Lower draw order corresponds with further back)
 	SpriteComponent(class Actor* owner, int drawOrder = 100);
 	~SpriteComponent();

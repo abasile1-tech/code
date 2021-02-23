@@ -10,6 +10,8 @@
 #include "SpriteComponent.h"
 #include <vector>
 #include "Math.h"
+
+// a subclass of SpriteComponent for backgrounds
 class BGSpriteComponent : public SpriteComponent
 {
 public:
@@ -26,6 +28,7 @@ public:
 	float GetScrollSpeed() const { return mScrollSpeed; }
 private:
 	// Struct to encapsulate each bg image and its offset
+	// the offsets update every frame to create the scrolling effect
 	struct BGTexture
 	{
 		SDL_Texture* mTexture;

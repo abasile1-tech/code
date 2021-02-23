@@ -11,6 +11,9 @@
 #include "Component.h"
 #include <algorithm>
 
+// dependency injection (the actor constructor receives a pointer to the Game class)
+// then an actor can use this pointer to create another actor (or access any other
+// required Game functions)
 Actor::Actor(Game* game)
 	:mState(EActive)
 	, mPosition(Vector2::Zero)
@@ -41,6 +44,7 @@ void Actor::Update(float deltaTime)
 	}
 }
 
+// loops over all the components and updates each in turn
 void Actor::UpdateComponents(float deltaTime)
 {
 	for (auto comp : mComponents)
@@ -49,6 +53,8 @@ void Actor::UpdateComponents(float deltaTime)
 	}
 }
 
+// the base implementation of UpdateActor is empty, but Actor subclasses can write
+// custom behavior in an overridden UpdateActor function
 void Actor::UpdateActor(float deltaTime)
 {
 }

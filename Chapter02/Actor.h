@@ -12,6 +12,7 @@
 class Actor
 {
 public:
+	// used to track state of actor 
 	enum State
 	{
 		EActive,
@@ -22,6 +23,7 @@ public:
 	Actor(class Game* game);
 	virtual ~Actor();
 
+	// Called every frame to update the Actor
 	// Update function called from Game (not overridable)
 	void Update(float deltaTime);
 	// Updates all the components attached to the actor (not overridable)
@@ -52,7 +54,9 @@ private:
 
 	// Transform
 	Vector2 mPosition;
+	// make the actor bigger or smaller
 	float mScale;
+	// rotation is in radians, not degrees
 	float mRotation;
 
 	std::vector<class Component*> mComponents;

@@ -24,7 +24,11 @@ private:
 	// All textures in the animation
 	std::vector<SDL_Texture*> mAnimTextures;
 	// Current frame displayed
+	// tracks the current frame, displayed as a float.
+	// this allows you to also keep track of how long that frame has been displayed
 	float mCurrFrame;
 	// Animation frame rate
+	// allows different animated sprites to run at different frame rates.
+	// allows the animation to dynamically speed up or slow down
 	float mAnimFPS;
 };

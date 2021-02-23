@@ -15,6 +15,9 @@ BGSpriteComponent::BGSpriteComponent(class Actor* owner, int drawOrder)
 {
 }
 
+// updates the offsets of each background, taking to account when
+// one image moves all the way off the screen.
+// this allows the images to infinitely repeat.
 void BGSpriteComponent::Update(float deltaTime)
 {
 	SpriteComponent::Update(deltaTime);
@@ -53,6 +56,8 @@ void BGSpriteComponent::Draw(SDL_Renderer* renderer)
 	}
 }
 
+// initialize the offsets, positioning each background to the right of the previous one.
+// this code assumes that each background image has a width corresponding to the screen width.
 void BGSpriteComponent::SetBGTextures(const std::vector<SDL_Texture*>& textures)
 {
 	int count = 0;

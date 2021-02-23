@@ -37,7 +37,11 @@ void SpriteComponent::Draw(SDL_Renderer* renderer)
 		r.x = static_cast<int>(mOwner->GetPosition().x - r.w / 2);
 		r.y = static_cast<int>(mOwner->GetPosition().y - r.h / 2);
 
+		// SDL_RenderCopyEx is used because of the advanced behavior of rotating sprites.
 		// Draw (have to convert angle from radians to degrees, and clockwise to counter)
+		// SDL expects degrees, but Actor uses radians.
+		// in SDL, a positive angle is clockwise
+		// in the unit circle, a positive angle is counterclockwise
 		SDL_RenderCopyEx(renderer,
 			mTexture,
 			nullptr,
@@ -48,6 +52,8 @@ void SpriteComponent::Draw(SDL_Renderer* renderer)
 	}
 }
 
+// sets the mTexture member variable and uses SDL_QueryTexture to get the width and height
+// of the texture
 void SpriteComponent::SetTexture(SDL_Texture* texture)
 {
 	mTexture = texture;
