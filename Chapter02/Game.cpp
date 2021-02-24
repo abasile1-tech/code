@@ -72,6 +72,8 @@ void Game::RunLoop()
 
 void Game::ProcessInput()
 {
+	// if the window gets closed by clicking the x in the top right, set mIsRunning to false 
+	// to end the game
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -83,6 +85,7 @@ void Game::ProcessInput()
 		}
 	}
 	
+	// if the escape key is pressed, set mIsRunning to false so that the game will end
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
@@ -102,9 +105,12 @@ void Game::UpdateGame()
 	// Compute delta time
 	// Wait until 16ms has elapsed since last frame
 	while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + 16))
-		;
+		; // do nothing, just wait
 
+	// calculate the change in time in seconds
 	float deltaTime = (SDL_GetTicks() - mTicksCount) / 1000.0f;
+	
+	// no matter what, say that no more than 50 milliseconds have passed.
 	if (deltaTime > 0.05f)
 	{
 		deltaTime = 0.05f;
@@ -112,34 +118,35 @@ void Game::UpdateGame()
 	mTicksCount = SDL_GetTicks();
 
 	// Update all actors
-	mUpdatingActors = true;
+	mUpdatingActors = true; // we are now updating the actors
 	for (auto actor : mActors)
 	{
-		actor->Update(deltaTime);
+		actor->Update(deltaTime); // update the actors and the components
 	}
-	mUpdatingActors = false;
+	mUpdatingActors = false; // we just finished updating the actors
 
 	// Move any pending actors to mActors
 	for (auto pending : mPendingActors)
 	{
-		mActors.emplace_back(pending);
+		mActors.emplace_back(pending); // move them from the pending actors list to the actors list
 	}
-	mPendingActors.clear();
+	mPendingActors.clear(); // get rid of the old pending actors list
 
 	// Add any dead actors to a temp vector
-	std::vector<Actor*> deadActors;
+	std::vector<Actor*> deadActors; // this list is temporary because it is not in the header file
 	for (auto actor : mActors)
 	{
 		if (actor->GetState() == Actor::EDead)
 		{
-			deadActors.emplace_back(actor);
+			deadActors.emplace_back(actor); // move any dead actors to this dead list
 		}
 	}
 
 	// Delete dead actors (which removes them from mActors)
 	for (auto actor : deadActors)
 	{
-		delete actor;
+		delete actor; // the delete key word is the opposite of the new key word
+		// the delete operator Deallocates a block of memory.
 	}
 }
 
@@ -170,12 +177,12 @@ void Game::LoadData()
 	mBullet->SetPosition(Vector2(100.0f, 384.0f));
 	mBullet->SetScale(1.5f);
 
-	// Create enemy
+	// Create the enemy ship
 	mEnemy = new Enemy(this);
 	mEnemy->SetPosition(Vector2(924.0f, 384.0f));
 	mEnemy->SetScale(1.5f);
 
-	// multiple backgrounds each with differing scroll speeds creates the Paralax Effect
+	// multiple backgrounds each with differing scroll speeds creates the Parallax Effect
 	// Create actor for the background (this doesn't need a subclass)
 	Actor* temp = new Actor(this);
 	temp->SetPosition(Vector2(512.0f, 384.0f));
@@ -203,9 +210,9 @@ void Game::UnloadData()
 {
 	// Delete actors
 	// Because ~Actor calls RemoveActor, have to use a different style loop
-	while (!mActors.empty())
+	while (!mActors.empty()) // loop over all of the actors
 	{
-		delete mActors.back();
+		delete mActors.back(); // the delete operator deallocates a block of memory
 	}
 
 	// Destroy textures
