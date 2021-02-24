@@ -151,6 +151,7 @@ void Game::GenerateOutput()
 	SDL_RenderPresent(mRenderer);
 }
 
+// the actors, including the ship, are created
 void Game::LoadData()
 {
 	// Create player's ship
@@ -158,6 +159,7 @@ void Game::LoadData()
 	mShip->SetPosition(Vector2(100.0f, 384.0f));
 	mShip->SetScale(1.5f);
 
+	// multiple backgrounds each with differing scroll speeds creates the Paralax Effect
 	// Create actor for the background (this doesn't need a subclass)
 	Actor* temp = new Actor(this);
 	temp->SetPosition(Vector2(512.0f, 384.0f));

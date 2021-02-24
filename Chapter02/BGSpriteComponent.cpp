@@ -34,6 +34,9 @@ void BGSpriteComponent::Update(float deltaTime)
 	}
 }
 
+// draws each background texture using SDL_RenderCopy, 
+// making sure to adjust the position based on the owner's position
+// and the offset of that background. This achieves the simple scrolling behavior.
 void BGSpriteComponent::Draw(SDL_Renderer* renderer)
 {
 	// Draw each background texture
