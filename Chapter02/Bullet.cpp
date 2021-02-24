@@ -46,30 +46,30 @@ void Bullet::UpdateActor(float deltaTime)
 	SetPosition(pos);
 }
 
-// updates mRightSpeed and mDownSpeed based on the keyboard input from I,J,K,L keys
+// updates mRightSpeed and mDownSpeed based on the keyboard input from T,F,G,H keys
 void Bullet::ProcessKeyboard(const uint8_t* state)
 {
 	mRightSpeed = 0.0f;
 	mDownSpeed = 0.0f;
 	// right/left
-	// L key moves the bullet right
-	if (state[SDL_SCANCODE_L])
+	// H key moves the bullet right
+	if (state[SDL_SCANCODE_H])
 	{
 		mRightSpeed += 250.0f;
 	}
-	// J key moves the bullet left
-	if (state[SDL_SCANCODE_J])
+	// F key moves the bullet left
+	if (state[SDL_SCANCODE_F])
 	{
 		mRightSpeed -= 250.0f;
 	}
 	// up/down
-	// K key moves the bullet down
-	if (state[SDL_SCANCODE_K])
+	// G key moves the bullet down
+	if (state[SDL_SCANCODE_G])
 	{
 		mDownSpeed += 300.0f;
 	}
-	// I key moves the bullet up
-	if (state[SDL_SCANCODE_I])
+	// T key moves the bullet up
+	if (state[SDL_SCANCODE_T])
 	{
 		mDownSpeed -= 300.0f;
 	}

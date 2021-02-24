@@ -31,14 +31,14 @@ void Enemy::UpdateActor(float deltaTime)
 	Vector2 pos = GetPosition();
 	pos.x += mRightSpeed * deltaTime;
 	pos.y += mDownSpeed * deltaTime;
-	// Restrict position to left half of screen
-	if (pos.x < 25.0f)
+	// Restrict position to right half of screen
+	if (pos.x < 524.0f)
 	{
-		pos.x = 25.0f;
+		pos.x = 524.0f;
 	}
-	else if (pos.x > 500.0f)
+	else if (pos.x > 999.0f)
 	{
-		pos.x = 500.0f;
+		pos.x = 999.0f;
 	}
 	if (pos.y < 25.0f)
 	{
@@ -51,30 +51,30 @@ void Enemy::UpdateActor(float deltaTime)
 	SetPosition(pos);
 }
 
-// updates mRightSpeed and mDownSpeed based on the keyboard input from T,F,G,H keys
+// updates mRightSpeed and mDownSpeed based on the keyboard input from I,J,K,L keys
 void Enemy::ProcessKeyboard(const uint8_t* state)
 {
 	mRightSpeed = 0.0f;
 	mDownSpeed = 0.0f;
 	// right/left
-	// H key moves the ship right
-	if (state[SDL_SCANCODE_H])
+	// L key moves the ship right
+	if (state[SDL_SCANCODE_L])
 	{
 		mRightSpeed += 250.0f;
 	}
-	// F key moves the ship left
-	if (state[SDL_SCANCODE_F])
+	// J key moves the ship left
+	if (state[SDL_SCANCODE_J])
 	{
 		mRightSpeed -= 250.0f;
 	}
 	// up/down
-	// G key moves the ship down
-	if (state[SDL_SCANCODE_G])
+	// K key moves the ship down
+	if (state[SDL_SCANCODE_K])
 	{
 		mDownSpeed += 300.0f;
 	}
-	// T key moves the ship up
-	if (state[SDL_SCANCODE_T])
+	// I key moves the ship up
+	if (state[SDL_SCANCODE_I])
 	{
 		mDownSpeed -= 300.0f;
 	}

@@ -172,7 +172,7 @@ void Game::LoadData()
 
 	// Create enemy
 	mEnemy = new Enemy(this);
-	mEnemy->SetPosition(Vector2(100.0f, 384.0f));
+	mEnemy->SetPosition(Vector2(924.0f, 384.0f));
 	mEnemy->SetScale(1.5f);
 
 	// multiple backgrounds each with differing scroll speeds creates the Paralax Effect
