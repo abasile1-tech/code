@@ -2,8 +2,8 @@
 #include "AnimSpriteComponent.h"
 #include "Game.h"
 
-// the Ship constructor initializes mRightSpeed and mDownSpeed to 0,
-// and also creates an AnimSpriteComponent attached to the ship, 
+// the Bullet constructor initializes mRightSpeed and mDownSpeed to 0,
+// and also creates an AnimSpriteComponent attached to the bullet, 
 // with associated textures.
 Bullet::Bullet(Game* game)
 	:Actor(game)
@@ -13,10 +13,7 @@ Bullet::Bullet(Game* game)
 	// Create an animated sprite component
 	AnimSpriteComponent* asc = new AnimSpriteComponent(this);
 	std::vector<SDL_Texture*> anims = {
-		game->GetTexture("Assets/Ship01.png"),
-		game->GetTexture("Assets/Ship02.png"),
-		game->GetTexture("Assets/Ship03.png"),
-		game->GetTexture("Assets/Ship04.png"),
+		game->GetTexture("Assets/Laser.png"),
 	};
 	asc->SetAnimTextures(anims);
 }
@@ -49,30 +46,30 @@ void Bullet::UpdateActor(float deltaTime)
 	SetPosition(pos);
 }
 
-// updates mRightSpeed and mDownSpeed based on the keyboard input from W, A, S, D, keys
+// updates mRightSpeed and mDownSpeed based on the keyboard input from I,J,K,L keys
 void Bullet::ProcessKeyboard(const uint8_t* state)
 {
 	mRightSpeed = 0.0f;
 	mDownSpeed = 0.0f;
 	// right/left
-	// D key moves the ship right
-	if (state[SDL_SCANCODE_D])
+	// L key moves the bullet right
+	if (state[SDL_SCANCODE_L])
 	{
 		mRightSpeed += 250.0f;
 	}
-	// A key moves the ship left
-	if (state[SDL_SCANCODE_A])
+	// J key moves the bullet left
+	if (state[SDL_SCANCODE_J])
 	{
 		mRightSpeed -= 250.0f;
 	}
 	// up/down
-	// S key moves the ship down
-	if (state[SDL_SCANCODE_S])
+	// K key moves the bullet down
+	if (state[SDL_SCANCODE_K])
 	{
 		mDownSpeed += 300.0f;
 	}
-	// W key moves the ship up
-	if (state[SDL_SCANCODE_W])
+	// I key moves the bullet up
+	if (state[SDL_SCANCODE_I])
 	{
 		mDownSpeed -= 300.0f;
 	}

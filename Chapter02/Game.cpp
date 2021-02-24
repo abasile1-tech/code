@@ -12,6 +12,7 @@
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "Ship.h"
+#include "Bullet.h"
 #include "BGSpriteComponent.h"
 
 Game::Game()
@@ -89,6 +90,8 @@ void Game::ProcessInput()
 
 	// Process ship input
 	mShip->ProcessKeyboard(state);
+	// Process bullet input
+	mBullet->ProcessKeyboard(state);
 }
 
 void Game::UpdateGame()
@@ -158,6 +161,11 @@ void Game::LoadData()
 	mShip = new Ship(this);
 	mShip->SetPosition(Vector2(100.0f, 384.0f));
 	mShip->SetScale(1.5f);
+
+	// Create bullet
+	mBullet = new Bullet(this);
+	mBullet->SetPosition(Vector2(100.0f, 384.0f));
+	mBullet->SetScale(1.5f);
 
 	// multiple backgrounds each with differing scroll speeds creates the Paralax Effect
 	// Create actor for the background (this doesn't need a subclass)
