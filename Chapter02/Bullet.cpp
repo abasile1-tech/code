@@ -26,14 +26,14 @@ void Bullet::UpdateActor(float deltaTime)
 	Vector2 pos = GetPosition();
 	pos.x += mRightSpeed * deltaTime;
 	pos.y += mDownSpeed * deltaTime;
-	// Restrict position to left half of screen
+	// Restrict position to the screen
 	if (pos.x < 25.0f)
 	{
 		pos.x = 25.0f;
 	}
-	else if (pos.x > 500.0f)
+	else if (pos.x > 999.0f)
 	{
-		pos.x = 500.0f;
+		pos.x = 999.0f;
 	}
 	if (pos.y < 25.0f)
 	{
