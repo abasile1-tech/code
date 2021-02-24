@@ -11,7 +11,7 @@
 #include <algorithm>
 #include "Actor.h"
 #include "SpriteComponent.h"
-#include "Ship.h"
+#include "Runner.h"
 #include "BGSpriteComponent.h"
 
 Game::Game()
@@ -87,8 +87,8 @@ void Game::ProcessInput()
 		mIsRunning = false;
 	}
 
-	// Process ship input
-	mShip->ProcessKeyboard(state);
+	// Process runner input
+	mRunner->ProcessKeyboard(state);
 }
 
 void Game::UpdateGame()
@@ -154,10 +154,10 @@ void Game::GenerateOutput()
 // the actors, including the ship, are created
 void Game::LoadData()
 {
-	// Create player's ship
-	mShip = new Ship(this);
-	mShip->SetPosition(Vector2(100.0f, 384.0f));
-	mShip->SetScale(1.5f);
+	// Create player's runner
+	mRunner = new Runner(this);
+	mRunner->SetPosition(Vector2(100.0f, 384.0f));
+	mRunner->SetScale(1.5f);
 
 	// multiple backgrounds each with differing scroll speeds creates the Paralax Effect
 	// Create actor for the background (this doesn't need a subclass)

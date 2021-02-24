@@ -6,14 +6,14 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "Ship.h"
+#include "Runner.h"
 #include "AnimSpriteComponent.h"
 #include "Game.h"
 
-// the Ship constructor initializes mRightSpeed and mDownSpeed to 0,
-// and also creates an AnimSpriteComponent attached to the ship, 
+// the Runner constructor initializes mRightSpeed and mDownSpeed to 0,
+// and also creates an AnimSpriteComponent attached to the runner, 
 // with associated textures.
-Ship::Ship(Game* game)
+Runner::Runner(Game* game)
 	:Actor(game)
 	,mRightSpeed(0.0f)
 	,mDownSpeed(0.0f)
@@ -21,16 +21,31 @@ Ship::Ship(Game* game)
 	// Create an animated sprite component
 	AnimSpriteComponent* asc = new AnimSpriteComponent(this);
 	std::vector<SDL_Texture*> anims = {
-		game->GetTexture("Assets/Ship01.png"),
-		game->GetTexture("Assets/Ship02.png"),
-		game->GetTexture("Assets/Ship03.png"),
-		game->GetTexture("Assets/Ship04.png"),
+		game->GetTexture("Assets/Character01.png"),
+		game->GetTexture("Assets/Character02.png"),
+		game->GetTexture("Assets/Character03.png"),
+		game->GetTexture("Assets/Character04.png"),
+		game->GetTexture("Assets/Character05.png"),
+		game->GetTexture("Assets/Character06.png"),
+		game->GetTexture("Assets/Character07.png"),
+		game->GetTexture("Assets/Character08.png"),
+		game->GetTexture("Assets/Character09.png"),
+		game->GetTexture("Assets/Character10.png"),
+		game->GetTexture("Assets/Character11.png"),
+		game->GetTexture("Assets/Character12.png"),
+		game->GetTexture("Assets/Character13.png"),
+		game->GetTexture("Assets/Character14.png"),
+		game->GetTexture("Assets/Character15.png"),
+		game->GetTexture("Assets/Character16.png"),
+		game->GetTexture("Assets/Character17.png"),
+		game->GetTexture("Assets/Character18.png")
+		
 	};
 	asc->SetAnimTextures(anims);
 }
 
-// implements the ship's movement
-void Ship::UpdateActor(float deltaTime)
+// implements the runner's movement
+void Runner::UpdateActor(float deltaTime)
 {
 	Actor::UpdateActor(deltaTime);
 	// Update position based on speeds and delta time
@@ -58,7 +73,7 @@ void Ship::UpdateActor(float deltaTime)
 }
 
 // updates mRightSpeed and mDownSpeed based on the keyboard input from W, A, S, D, keys
-void Ship::ProcessKeyboard(const uint8_t* state)
+void Runner::ProcessKeyboard(const uint8_t* state)
 {
 	mRightSpeed = 0.0f;
 	mDownSpeed = 0.0f;

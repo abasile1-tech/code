@@ -8,10 +8,10 @@
 
 #pragma once
 #include "Actor.h"
-class Ship : public Actor
+class Runner : public Actor
 {
 public:
-	Ship(class Game* game);
+	Runner(class Game* game);
 	void UpdateActor(float deltaTime) override;
 	void ProcessKeyboard(const uint8_t* state);
 	float GetRightSpeed() const { return mRightSpeed; }
